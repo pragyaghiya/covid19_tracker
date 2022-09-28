@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="https://covid19trackerapp.com/">
+   
+
+    <link rel="stylesheet" href="./dist/main.css" type="text/css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COVID-19 Tracker</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138209632-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-138209632-3');
+    </script>
+
+</head>
+
+<body>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="./dist/main.js"></script>
+    
+
+    <div id="app">
+        <div id="aboveSvg">
+            <div id="filters">
+                <div class="filtersContainer">
+                    
+                    <div class="bottom">
+                        <label id="dateSelect">
+                            <div class="top">
+                                <p style="margin:0px;">Choose Another Date</p> 
+                                <input type="date" id="calendarInput" min="2020-01-22">
+                                
+                            </div>
+                        </label>
+                        <label id="excludeChina">
+                            <span id="chinaCheckboxLabel"></span>
+                            <label style="margin-left:0px;" class="toggle">
+                                <input type="checkbox"  id="chinaCheckbox" >
+                                
+                            </label>
+                            <button id="backToCountries">Back to Countries</button>
+                        </label>
+                       
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <div class="titleContainer">
+                <h2 id="asOfTitle"></h2>
+                <div id="graphTitle">
+                </div>
+                <p>COVID-19 Cases</p>
+            </div>
+            
+            
+
+            <div id="htmlLegendContainer">
+                <a href="#footer">About This </a>
+                <div id="htmlLegend">
+                        <section class="casesColor">
+                            <div class="confirmedCasesColorCircle"></div>
+                            <p>Unresolved Reported Cases</p>
+                        </section>
+
+                        <section class="recoveriesColor">
+                            <div class="recoveriesColorCircle"></div>
+                            <p>Reported Recoveries</p>
+                        </section>
+
+                        <section class="deathsColor">
+                            <div class="deathsColorCircle"></div>
+                            <p>Reported Deaths</p>
+                        </section>
+                </div>
+            </div>
+        </div>
+        <svg id="horzBarChart"></svg>       
+        
+       
+        
+
+    </div>
+    <script>
+        var today = new Date();
+        var dd = today.getDate() - 1;
+        var mm = today.getMonth() + 1; 
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("calendarInput").setAttribute("max", today)
+    </script>
+    
+</body>
+
+</html>
+
+
